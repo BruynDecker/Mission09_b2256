@@ -1,8 +1,55 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model List<Mission09_b2256.Models.Books>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Books</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>ISBN</th>
+            <th>Classification</th>
+            <th>Category</th>
+            <th>Page Count</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Publisher</td>
+                <td>@book.Isbn</td>
+                <td>@book.Classification</td>
+                <td>@book.Category</td>
+                <td>@book.PageCount</td>
+                <td>@book.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pagination">
+        @if (ViewData["CurrentPage"] != null && ViewData["TotalPages"] != null)
+        {
+            var currentPage = (int)ViewData["CurrentPage"];
+            var totalPages = (int)ViewData["TotalPages"];
+            var pageSize = (int)ViewData["PageSize"];
+
+            for (int i = 1; i <= totalPages; i++)
+            {
+                var pageLink = $"/Books/Index?page={i}&pageSize={pageSize}";
+                var isActive = currentPage == i ? "active" : "";
+                <li class="page-item @isActive"><a class="page-link" href="@pageLink">@i</a></li>
+            }
+        }
+    </ul>
+</nav>
+

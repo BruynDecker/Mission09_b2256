@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mission09_b2256
 {
@@ -24,6 +25,8 @@ namespace Mission09_b2256
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<Models.BookstoreContext>(options =>
+                options.UseSqlite("Data Source=Bookstore.sqlite"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

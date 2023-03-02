@@ -13,14 +13,27 @@ namespace Mission09_b2256.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private BookstoreContext blahContext { get; set; }
+
+        public HomeController(ILogger<HomeController> logger, BookstoreContext daContext)
         {
             _logger = logger;
+            blahContext = daContext;
         }
 
-        public IActionResult Index()
+
+
+        public IActionResult Index(int page = 1)
         {
-            return View();
+            const int PageSize = 10;
+
+            var books = blahContext.Books
+                .OrderBy(b => b.BookId)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
+
+            return View(books);
         }
 
         public IActionResult Privacy()
