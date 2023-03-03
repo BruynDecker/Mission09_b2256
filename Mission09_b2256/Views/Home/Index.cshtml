@@ -1,11 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model List<Mission09_b2256.Models.Books>
+@model ProjectsViewModel
 
 <h1>The Book Store</h1>
 
-@foreach (Books b in Model)
+@foreach (Books b in Model.Book)
             {
                 <h3>@b.Title</h3>
 
@@ -14,4 +14,9 @@
                     <li>Price: @b.Price</li>
                 </ul>
             }
+
+<a asp-action="Index" asp-route-pageNum="1">1</a>
+<a asp-action="Index" asp-route-pageNum="2">2</a>
+
+<div page-blah="@Model.PageInfo" page-action="Index"></div>
 

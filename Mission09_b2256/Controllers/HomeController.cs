@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Mission09_b2256.Models;
+using Mission09_b2256.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,17 +19,25 @@ namespace Mission09_b2256.Controllers
             repo = temp;
         }
 
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(int pagenum =1)
         {
-            int PageSize = 5;
+            int pageSize = 5;
 
-            var x = repo.Book.ToList();
+            var x = new ProjectsViewModel
+            {
+                Book = repo.Book
+                .OrderBy(b => b.Title)
+                .Skip(((pagenum) - 1) * pageSize)
+                .Take(pageSize),
 
-            //var books = repo.Book
-                //.OrderBy(b => b.BookId)
-                //.Skip((page - 1) * PageSize)
-                //.Take(PageSize)
-               // .ToList();
+                PageInfo = new PageInfo
+                {
+                    TotalNumProjects = repo.Book.Count(),
+                    ProjectsPerPage = pageSize,
+                    CurrentPage = pagenum
+
+                }
+            };
 
             return View(x);
         }
