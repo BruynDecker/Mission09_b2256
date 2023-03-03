@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Mission09_b2256</title>
+    <link href="/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -21,9 +22,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -31,14 +29,23 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            <div class="bg-dark text-white p-2">
+                <span class="navbar-brand ml-2">BOOK STORE</span>
+            </div>
+            <div class="row m-1 p-1">
+                <div id="categories" class="col-3">
+                    Put something useful here later!
+                </div>
+                <div class="col-9">
+                    @RenderBody()
+                </div>
+            </div>
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Mission09_b2256 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+        <div style="padding: 5px">Thanks for grading this TA's</div>
+            
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

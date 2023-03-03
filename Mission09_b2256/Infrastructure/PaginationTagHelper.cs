@@ -29,6 +29,10 @@ namespace Mission09_b2256.Infrastructure
         public PageInfo PageBlah { get; set; }
         public string PageAction { get; set; }
         public string Rendevous { get; set; }
+        public bool PageClassesEnabled { get; set; } = false;
+        public string PageClass { get; set; }
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
         public override void Process (TagHelperContext thc, TagHelperOutput tho)
         {
             IUrlHelper uh = uhf.GetUrlHelper(vc);
@@ -40,6 +44,12 @@ namespace Mission09_b2256.Infrastructure
                 TagBuilder tb = new TagBuilder("a");
 
                 tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+                if (PageClassesEnabled)
+                {
+                    tb.AddCssClass(PageClass);
+                    tb.AddCssClass(i == PageBlah.CurrentPage
+                        ? PageClassSelected : PageClassNormal);
+                }
                 tb.InnerHtml.Append(i.ToString());
 
                 final.InnerHtml.AppendHtml(tb);
