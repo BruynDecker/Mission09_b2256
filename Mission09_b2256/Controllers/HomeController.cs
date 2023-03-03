@@ -11,34 +11,26 @@ namespace Mission09_b2256.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IBookRepository repo;
 
-        private BookstoreContext blahContext { get; set; }
-
-        public HomeController(ILogger<HomeController> logger, BookstoreContext daContext)
+        public HomeController (IBookRepository temp)
         {
-            _logger = logger;
-            blahContext = daContext;
+            repo = temp;
         }
-
-
 
         public IActionResult Index(int page = 1)
         {
-            const int PageSize = 10;
+            int PageSize = 5;
 
-            var books = blahContext.Books
-                .OrderBy(b => b.BookId)
-                .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToList();
+            var x = repo.Book.ToList();
 
-            return View(books);
-        }
+            //var books = repo.Book
+                //.OrderBy(b => b.BookId)
+                //.Skip((page - 1) * PageSize)
+                //.Take(PageSize)
+               // .ToList();
 
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(x);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Mission09_b2256.Models;
 
 namespace Mission09_b2256
 {
@@ -27,6 +28,7 @@ namespace Mission09_b2256
             services.AddControllersWithViews();
             services.AddDbContext<Models.BookstoreContext>(options =>
                 options.UseSqlite("Data Source=Bookstore.sqlite"));
+            services.AddScoped<IBookRepository, EFBookRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +57,8 @@ namespace Mission09_b2256
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
         }
     }
 }
