@@ -53,6 +53,11 @@ namespace Mission09_b2256
 
             app.UseEndpoints(endpoints =>
             {
+                //This here makes it so we kind of have a label for our pages
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page_{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index" });
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
