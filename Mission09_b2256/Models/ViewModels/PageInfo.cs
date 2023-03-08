@@ -10,6 +10,6 @@ namespace Mission09_b2256.Models.ViewModels
         public int TotalNumProjects { get; set; }
         public int ProjectsPerPage { get; set; }
         public int CurrentPage { get; set; }
-        public int TotalPages => (int) Math.Ceiling((double) TotalNumProjects / ProjectsPerPage);
+        public int TotalPages => (int) Math.Ceiling((double) TotalNumProjects / (double) ProjectsPerPage);
     }
 }

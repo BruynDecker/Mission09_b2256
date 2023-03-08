@@ -7,9 +7,8 @@
 
 @foreach (Books b in Model.Book)
 {
-    <partial name="ProjectSummary" model="b"/>
+    <partial name="ProjectSummary" model="b" />
 }
-
 
 <div page-blah="@Model.PageInfo" page-action="Index" page-classes-enabled="true"
      page-class="btn" page-class-normal="btn-outline-dark"
