@@ -9,10 +9,10 @@ using Mission09_b2256.Models;
 
 namespace Mission09_b2256.Pages
 {
-    public class DonateModel : PageModel
+    public class PurchaseModel : PageModel
     {
         private IBookRepository repo { get; set; }
-        public DonateModel (IBookRepository temp)
+        public PurchaseModel(IBookRepository temp)
         {
             repo = temp;
         }

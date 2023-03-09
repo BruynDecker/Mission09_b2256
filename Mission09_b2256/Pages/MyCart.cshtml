@@ -1,5 +1,5 @@
 ﻿@page
-@model Mission09_b2256.Pages.DonateModel
+@model Mission09_b2256.Pages.PurchaseModel
 @{
 }
 
@@ -15,15 +15,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var i in Model.basket.Items)
-            {
-                <tr>
-                    <td>@i.Book.Title</td>
-                    <td>@i.Quantity</td>
-                    <td>25</td>
-                    <td>@(i.Quantity *25)</td>
-                </tr>
-            }
+        @foreach (var i in Model.basket.Items)
+        {
+            <tr>
+                <td>@i.Book.Title</td>
+                <td>@i.Quantity</td>
+                <td>@i.Book.Price</td>
+                <td>@(i.Quantity * i.Book.Price)</td>
+            </tr>
+        }
     </tbody>
 
     <tfoot>
@@ -35,5 +35,5 @@
 </table>
 
 <div>
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Donating</a>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
 </div>

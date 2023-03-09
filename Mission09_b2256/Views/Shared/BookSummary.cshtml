@@ -21,12 +21,12 @@
         <li>Number of Pages: @Model.PageCount</li>
     </ul>
 
-    <form method="post" asp-page="/Donate">
+    <form method="post" asp-page="/MyCart">
         <input type="hidden" asp-for="@Model.BookId" />
         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
 
         <span class="card-text">
-            <button type="submit" class="btn btn-success btn-sm float-right">Donate</button>
+            <button type="submit" class="btn btn-success btn-sm float-right hover-grow " data-toggle="tooltip" data-placement="bottom" title="Click me!">Add To Cart</button>
         </span>
     </form>
 </div>
