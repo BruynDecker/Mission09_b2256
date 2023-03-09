@@ -29,6 +29,10 @@ namespace Mission09_b2256
             services.AddDbContext<Models.BookstoreContext>(options =>
                 options.UseSqlite("Data Source=Bookstore.sqlite"));
             services.AddScoped<IBookRepository, EFBookRepository>();
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +50,7 @@ namespace Mission09_b2256
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -61,7 +65,9 @@ namespace Mission09_b2256
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
+          
 
             
         }
