@@ -8,7 +8,7 @@ namespace Mission09_b2256.Models
     public class Basket
     {
         public List<BasketLineItem> Items { get; set; } = new List<BasketLineItem>();
-        public void AddItem (Books proj, int qty)
+        public virtual void AddItem (Books proj, int qty)
         {
             BasketLineItem line = Items
                 .Where(p => p.Book.BookId == proj.BookId)
@@ -27,7 +27,15 @@ namespace Mission09_b2256.Models
                 line.Quantity += qty;
             }
         }
-        public double CalculateTotal()
+        public virtual void RemoveItem(Books proj)
+        {
+            Items.RemoveAll(x => x.Book.BookId == proj.BookId);
+        }
+        public virtual void ClearBasket()
+        {
+            Items.Clear();
+        }
+        public virtual double CalculateTotal()
         {
             double sum = Items.Sum(x => x.Quantity * x.Book.Price);
 

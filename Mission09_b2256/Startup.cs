@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Mission09_b2256.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Mission09_b2256
 {
@@ -30,9 +31,12 @@ namespace Mission09_b2256
                 options.UseSqlite("Data Source=Bookstore.sqlite"));
             services.AddScoped<IBookRepository, EFBookRepository>();
             services.AddRazorPages();
+            services.AddHttpContextAccessor();
 
             services.AddDistributedMemoryCache();
             services.AddSession();
+            services.AddScoped(x => SessionBasket.GetBasket(x));
+            services.AddSingleton<HttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

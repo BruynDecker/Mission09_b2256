@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mission09_b2256.Infrastructure
 {
-    public static class StaticExtensions
+    public static class SessionExtensions
     {
         public static void SetJson (this ISession session, string key, object value)
         {
