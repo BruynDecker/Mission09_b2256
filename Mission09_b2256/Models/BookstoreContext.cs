@@ -20,6 +20,7 @@ namespace Mission09_b2256.Models
         }
 
         public virtual DbSet<Books> Books { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

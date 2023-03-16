@@ -30,6 +30,7 @@ namespace Mission09_b2256
             services.AddDbContext<Models.BookstoreContext>(options =>
                 options.UseSqlite("Data Source=Bookstore.sqlite"));
             services.AddScoped<IBookRepository, EFBookRepository>();
+            services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
             services.AddRazorPages();
             services.AddHttpContextAccessor();
 

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +10,7 @@ namespace Mission09_b2256.Models
     public class Basket
     {
         public List<BasketLineItem> Items { get; set; } = new List<BasketLineItem>();
+        
         public virtual void AddItem (Books proj, int qty)
         {
             BasketLineItem line = Items
@@ -46,6 +49,7 @@ namespace Mission09_b2256.Models
 
     public class BasketLineItem
     {
+        [Key]
         public int LineID { get; set; }
         public Books Book { get; set; }
         public int Quantity { get; set; }
